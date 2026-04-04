@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NorthPeak Advisory | Modern Risk Intelligence</title>
+  <meta name="description" content="A polished dummy company website inspired by modern insurance SaaS design." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: rgba(11, 21, 38, 0.78);
+      --panel-border: rgba(255,255,255,0.10);
+      --text: #e9f1fb;
+      --muted: #9fb1c8;
+      --brand: #55c4ff;
+      --brand-2: #6ef1d6;
+      --accent: #95a8ff;
+      --soft: #0d1a2d;
+      --card: #0c1728;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(85,196,255,0.16), transparent 28%),
+        radial-gradient(circle at top right, rgba(149,168,255,0.14), transparent 26%),
+        linear-gradient(180deg, #06101d 0%, #081325 42%, #09182b 100%);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(6, 16, 29, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #06101b;
+      font-weight: 800;
+      box-shadow: 0 12px 30px rgba(85,196,255,0.25);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+    }
+
+    .brand-text span:first-child { font-size: 1.05rem; }
+    .brand-text span:last-child {
+      font-size: 0.76rem;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn {
+      border: 1px solid transparent;
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: 0.25s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #04101b;
+      box-shadow: 0 16px 34px rgba(85,196,255,0.22);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      border-color: rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .hero {
+      padding: 82px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 999px;
+      padding: 9px 14px;
+      color: #d4e7ff;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--brand-2);
+      box-shadow: 0 0 0 8px rgba(110,241,214,0.09);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      max-width: 12ch;
+    }
+
+    .hero-copy p {
+      color: var(--muted);
+      font-size: 1.12rem;
+      max-width: 62ch;
+      margin: 22px 0 28px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 28px;
+      padding: 24px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -20% 75% auto;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(85,196,255,0.22), transparent 60%);
+      pointer-events: none;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .metric {
+      background: rgba(7, 16, 30, 0.72);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 20px;
+      padding: 18px;
+    }
+
+    .metric h3 {
+      font-size: 2rem;
+      margin: 0 0 6px;
+      letter-spacing: -0.05em;
+    }
+
+    .metric p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .mini-panel {
+      background: rgba(7, 16, 30, 0.82);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 22px;
+      padding: 18px;
+      margin-top: 16px;
+    }
+
+    .mini-panel-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .bar-wrap {
+      display: grid;
+      gap: 12px;
+    }
+
+    .bar {
+      height: 12px;
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.08);
+    }
+
+    .bar > span {
+      display: block;
+      height: 100%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--brand), var(--accent));
+    }
+
+    .trusted {
+      padding: 10px 0 44px;
+    }
+
+    .trusted-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 14px;
+    }
+
+    .trusted-badge {
+      background: rgba(255,255,255,0.035);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 16px;
+      text-align: center;
+      color: #c9d9ec;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    section {
+      padding: 54px 0;
+    }
+
+    .section-head {
+      max-width: 700px;
+      margin-bottom: 28px;
+    }
+
+    .section-head .label {
+      color: var(--brand-2);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-head h2 {
+      margin: 0 0 12px;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .section-head p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    .cards-3, .cards-4, .steps, .pricing-grid, .testimonials {
+      display: grid;
+      gap: 18px;
+    }
+
+    .cards-3 { grid-template-columns: repeat(3, 1fr); }
+    .cards-4 { grid-template-columns: repeat(4, 1fr); }
+    .steps { grid-template-columns: repeat(4, 1fr); }
+    .pricing-grid { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+    .testimonials { grid-template-columns: repeat(3, 1fr); }
+
+    .card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .card .number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(85,196,255,0.12);
+      border: 1px solid rgba(85,196,255,0.22);
+      color: var(--brand);
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .card p, .card li {
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .card ul {
+      margin: 16px 0 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .pricing-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pricing-card.popular {
+      border-color: rgba(110,241,214,0.28);
+      transform: translateY(-10px);
+      background: linear-gradient(180deg, rgba(17,40,58,0.92), rgba(9,20,35,0.92));
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(110,241,214,0.12);
+      color: var(--brand-2);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .price {
+      display: flex;
+      align-items: end;
+      gap: 6px;
+      margin: 16px 0 18px;
+    }
+
+    .price strong {
+      font-size: 3rem;
+      line-height: 1;
+      letter-spacing: -0.06em;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-weight: 600;
+      padding-bottom: 7px;
+    }
+
+    .quote {
+      font-size: 1.05rem;
+      color: #dbe9fa;
+      margin-bottom: 18px;
+    }
+
+    .person {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 16px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .cta-box {
+      background: linear-gradient(135deg, rgba(85,196,255,0.12), rgba(149,168,255,0.14));
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 30px;
+      padding: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      box-shadow: var(--shadow);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+      line-height: 1;
+    }
+
+    .cta-box p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    footer {
+      padding: 34px 0 60px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .footer-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid, .cards-3, .cards-4, .steps, .pricing-grid, .testimonials, .trusted-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .cta-box { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 760px) {
+      nav { flex-wrap: wrap; }
+      .nav-links { display: none; }
+      .hero { padding-top: 56px; }
+      .hero-grid, .cards-3, .cards-4, .steps, .pricing-grid, .testimonials, .trusted-row {
+        grid-template-columns: 1fr;
+      }
+      .hero-actions, .hero-meta { flex-direction: column; align-items: flex-start; }
+      .metric-grid { grid-template-columns: 1fr; }
+      h1 { max-width: 10ch; }
+    }
+  </style>
+</head>
+<body>
+  <div class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#top">
+          <div class="brand-mark">N</div>
+          <div class="brand-text">
+            <span>NorthPeak Advisory</span>
+            <span>Risk Intelligence Platform</span>
+          </div>
+        </a>
+        <div class="nav-links">
+          <a href="#solutions">Solutions</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#testimonials">Proof</a>
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="nav-cta">
+          <a class="btn btn-secondary" href="#pricing">See Pricing</a>
+          <a class="btn btn-primary" href="#demo">Book a Demo</a>
+        </div>
+      </nav>
+    </div>
+  </div>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Dummy company site for your sandbox
+          </div>
+          <h1>Write better business, faster.</h1>
+          <p>
+            NorthPeak Advisory helps agencies collect cleaner intake, route better-fit submissions,
+            and deliver polished proposals without the spreadsheet chaos. It is a fictional company,
+            built to feel premium, modern, and credible.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#demo">Get a Personal Demo</a>
+            <a class="btn btn-secondary" href="#testimonials">See the Proof</a>
+          </div>
+          <div class="hero-meta">
+            <span>7-day free trial</span>
+            <span>Onboard in minutes</span>
+            <span>Built for commercial brokers</span>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <div class="mini-panel-top">
+            <span>Operational Snapshot</span>
+            <span>Live Sandbox Mockup</span>
+          </div>
+          <div class="metric-grid">
+            <div class="metric">
+              <h3>125k+</h3>
+              <p>submissions analyzed</p>
+            </div>
+            <div class="metric">
+              <h3>3.2×</h3>
+              <p>faster intake workflow</p>
+            </div>
+            <div class="metric">
+              <h3>41%</h3>
+              <p>less re-keying</p>
+            </div>
+            <div class="metric">
+              <h3>8 min</h3>
+              <p>average initial setup</p>
+            </div>
+          </div>
+          <div class="mini-panel">
+            <div class="mini-panel-top">
+              <span>Carrier Fit Confidence</span>
+              <span>Underwriting Readiness</span>
+            </div>
+            <div class="bar-wrap">
+              <div class="bar"><span style="width: 88%"></span></div>
+              <div class="bar"><span style="width: 76%"></span></div>
+              <div class="bar"><span style="width: 94%"></span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trusted">
+      <div class="container">
+        <div class="trusted-row">
+          <div class="trusted-badge">Pinnacle Risk</div>
+          <div class="trusted-badge">Atlas Brokerage</div>
+          <div class="trusted-badge">Stonegate Partners</div>
+          <div class="trusted-badge">Beacon Mutual</div>
+          <div class="trusted-badge">Harbor Underwriting</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">The problem</div>
+          <h2>Your intake process is probably costing you business.</h2>
+          <p>
+            When submissions live across email chains, PDFs, spreadsheets, and memory, teams quote slower,
+            miss details, and lose opportunities they should have won.
+          </p>
+        </div>
+        <div class="cards-3">
+          <div class="card">
+            <div class="number">01</div>
+            <h3>Inconsistent intake</h3>
+            <p>Every producer asks different questions. Missing fields create back-and-forth, delays, and avoidable errors.</p>
+          </div>
+          <div class="card">
+            <div class="number">02</div>
+            <h3>Too much double entry</h3>
+            <p>Your team copies the same client data into forms, raters, CRMs, and proposals again and again.</p>
+          </div>
+          <div class="card">
+            <div class="number">03</div>
+            <h3>Weak presentation</h3>
+            <p>When the output feels generic, the conversation turns into price only, not coverage strategy or expertise.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="section-head">
+          <div class="label">The platform</div>
+          <h2>One workflow, four modules, one intelligence layer.</h2>
+          <p>
+            NorthPeak Advisory connects intake, discovery, data pull, and proposal generation into a single polished experience.
+          </p>
+        </div>
+        <div class="cards-4">
+          <div class="card">
+            <div class="number">A</div>
+            <h3>Smart Forms</h3>
+            <p>Branded intake forms that collect structured data and reduce abandoned submissions.</p>
+            <ul>
+              <li>Embeddable on any website</li>
+              <li>Mobile-ready intake flow</li>
+              <li>Incomplete form alerts</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="number">B</div>
+            <h3>Guided Discovery</h3>
+            <p>A step-by-step producer workflow that captures better underwriting details every time.</p>
+            <ul>
+              <li>Consistent intake scripts</li>
+              <li>Cleaner handoff records</li>
+              <li>Fewer missed exposures</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="number">C</div>
+            <h3>Policy Sync</h3>
+            <p>Import core details from existing documents so your team is not retyping what already exists.</p>
+            <ul>
+              <li>Property and vehicle data</li>
+              <li>Pre-fill key fields</li>
+              <li>CRM-ready output</li>
+            </ul>
+          </div>
+          <div class="card">
+            <div class="number">D</div>
+            <h3>Proposal Studio</h3>
+            <p>Generate sleek, client-facing proposals that help your agency look sharp and close faster.</p>
+            <ul>
+              <li>Branded templates</li>
+              <li>Coverage comparison views</li>
+              <li>Cross-sell support</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">How it works</div>
+          <h2>Set up quickly, then tighten the whole workflow.</h2>
+          <p>
+            The structure below mirrors what strong modern SaaS landing pages do well: clean process, clear outcomes, low friction.
+          </p>
+        </div>
+        <div class="steps">
+          <div class="card">
+            <div class="number">1</div>
+            <h3>Connect tools</h3>
+            <p>Sync your CRM, rating engine, and core workflows in a lightweight onboarding flow.</p>
+          </div>
+          <div class="card">
+            <div class="number">2</div>
+            <h3>Launch intake</h3>
+            <p>Embed your form or send direct intake links to prospects and clients.</p>
+          </div>
+          <div class="card">
+            <div class="number">3</div>
+            <h3>Guide discovery</h3>
+            <p>Standardize the producer conversation so information quality rises across the team.</p>
+          </div>
+          <div class="card">
+            <div class="number">4</div>
+            <h3>Deliver proposals</h3>
+            <p>Turn clean intake into polished proposal output that feels premium and consultative.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">What customers say</div>
+          <h2>Make the dummy company feel real.</h2>
+          <p>
+            These are fictional testimonials for your sandbox, but the section structure is modeled after high-conversion SaaS layouts.
+          </p>
+        </div>
+        <div class="testimonials">
+          <div class="card">
+            <p class="quote">“NorthPeak became the operating layer we did not realize we were missing. Our intake got cleaner almost immediately.”</p>
+            <div class="person">Avery Collins, Principal, Summit Field Group</div>
+          </div>
+          <div class="card">
+            <p class="quote">“We used to lose time chasing missing details. Now our team starts from a structured record instead of chaos.”</p>
+            <div class="person">Morgan Lee, VP, Harborline Risk</div>
+          </div>
+          <div class="card">
+            <p class="quote">“The proposals look far more polished, and that changed the quality of the client conversation.”</p>
+            <div class="person">Jordan Patel, Founder, Cedar Ridge Brokerage</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div class="label">Pricing</div>
+          <h2>Simple, transparent, easy to fake-believe.</h2>
+          <p>
+            A clean three-tier section keeps the page feeling credible and complete, which is exactly what you want for a sandbox demo.
+          </p>
+        </div>
+        <div class="pricing-grid">
+          <div class="card pricing-card">
+            <h3>Starter</h3>
+            <div class="price"><strong>$199</strong><span>/mo</span></div>
+            <p>Good for small agencies validating a more structured intake flow.</p>
+            <ul>
+              <li>Up to 5 users</li>
+              <li>Unlimited intake forms</li>
+              <li>Basic proposal templates</li>
+              <li>Email support</li>
+            </ul>
+            <div style="margin-top:20px"><a class="btn btn-secondary" href="#demo">Start Trial</a></div>
+          </div>
+
+          <div class="card pricing-card popular">
+            <div class="pill">Most Popular</div>
+            <h3>Growth</h3>
+            <div class="price"><strong>$349</strong><span>/mo</span></div>
+            <p>Best for teams that want deeper automation and more consistent submission quality.</p>
+            <ul>
+              <li>Everything in Starter</li>
+              <li>Advanced discovery logic</li>
+              <li>CRM and rater integrations</li>
+              <li>Branded proposal workflows</li>
+            </ul>
+            <div style="margin-top:20px"><a class="btn btn-primary" href="#demo">Book Demo</a></div>
+          </div>
+
+          <div class="card pricing-card">
+            <h3>Scale</h3>
+            <div class="price"><strong>$599</strong><span>/mo</span></div>
+            <p>For agencies that want white-glove onboarding, more automation, and internal process discipline.</p>
+            <ul>
+              <li>Everything in Growth</li>
+              <li>Priority onboarding</li>
+              <li>Custom template setup</li>
+              <li>Quarterly workflow reviews</li>
+            </ul>
+            <div style="margin-top:20px"><a class="btn btn-secondary" href="#demo">Talk to Sales</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="demo">
+      <div class="container">
+        <div class="cta-box">
+          <div>
+            <h2>Use this as your clean GitHub + Vercel sandbox starter.</h2>
+            <p>
+              Save this file as <strong>index.html</strong>, upload it to your <strong>test-sites</strong> repo, then connect that repo to Vercel whenever you want a quick disposable test project.
+            </p>
+          </div>
+          <a class="btn btn-primary" href="#top">Back to top</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-line">
+      <div>© 2026 NorthPeak Advisory. Fictional company for sandbox testing.</div>
+      <div>Built as a single-file static site for easy GitHub upload.</div>
+    </div>
+  </footer>
+</body>
+</html>
