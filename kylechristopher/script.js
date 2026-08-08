@@ -11,6 +11,18 @@ const RESUME_PARTS = [
   'resume-v4/tail05.txt'
 ];
 
+const aboutTitle = document.querySelector('.about-quote');
+if (aboutTitle) {
+  aboutTitle.textContent = 'A career translating complexity into actionable simplicity.';
+}
+
+const aboutParagraphs = document.querySelectorAll('.about-copy > p');
+if (aboutParagraphs.length >= 3) {
+  aboutParagraphs[0].textContent = 'My career has followed a clear through-line across digital content, regulated healthcare data, infrastructure customer success, university teaching, Microsoft partner programs, and enterprise healthcare technology.';
+  aboutParagraphs[1].textContent = 'Across each chapter, the work has been consistent: understand complexity, make it usable, align the people who have to deliver, and keep important work moving.';
+  aboutParagraphs[2].textContent = 'Today, I bring that discipline to technical customer success, account management, solutions consulting, partner success, implementation, and AI-enabled delivery.';
+}
+
 async function downloadResume() {
   try {
     const parts = await Promise.all(
