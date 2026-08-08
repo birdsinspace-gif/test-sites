@@ -1,6 +1,6 @@
 async function downloadResume(){
-  const parts = await Promise.all([0,1,2,3].map(i => fetch(`resume/part${i}.txt`).then(r => { if(!r.ok) throw new Error('Resume unavailable'); return r.text(); })));
-  const binary = atob(parts.join('').trim()); const bytes = new Uint8Array(binary.length);
+  const payload = await fetch('resume/resume.b64').then(r => { if(!r.ok) throw new Error('Resume unavailable'); return r.text(); });
+  const binary = atob(payload.trim()); const bytes = new Uint8Array(binary.length);
   for(let i=0;i<binary.length;i++) bytes[i]=binary.charCodeAt(i);
   const blob = new Blob([bytes], {type:'application/pdf'}); const url = URL.createObjectURL(blob);
   const a = document.createElement('a'); a.href=url; a.download='Kyle_Christopher_Resume.pdf'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(url),1500);
