@@ -8,51 +8,72 @@
   <style>
     html, body { margin: 0; width: 100%; height: 100%; background: #08111f; overflow: hidden; font-family: Aptos, "Segoe UI", Arial, sans-serif; }
     #status { position: fixed; inset: 0; display: grid; place-items: center; color: #fff; font-size: 16px; letter-spacing: .01em; }
-    #viewer { display: none; width: 100%; height: 100%; border: 0; }
-    #fallback { display: none; color: #fff; text-align: center; padding: 48px 24px; }
-    #fallback a { color: #fff; }
+    #viewer { display: none; width: 100%; height: 100%; border: 0; background: #fff; }
+    #error { display: none; color: #fff; text-align: center; padding: 48px 24px; line-height: 1.6; }
   </style>
 </head>
 <body>
   <div id="status">Opening resume…</div>
-  <embed id="viewer" type="application/pdf" />
-  <div id="fallback">The PDF could not be displayed inline. <a id="fallbackLink" href="#">Open the resume</a>.</div>
+  <iframe id="viewer" title="Kyle Christopher Resume"></iframe>
+  <div id="error">The resume could not be opened. Please refresh the page.</div>
   <script>
     const parts = [
       'resume-v4/part00.txt',
       'resume-v4/part01.txt',
       'resume-v4/part02.txt',
       'resume-v4/part03.txt',
-      'resume-v4/tail00.txt',
+      'resume-exact/seg00.txt',
+      'resume-exact/seg01.txt',
+      'resume-exact/seg02.txt',
       'resume-v4/tail01.txt',
       'resume-v4/tail02.txt',
-      'resume-v4/tail03.txt',
-      'resume-v4/tail04.txt',
-      'resume-v4/tail05.txt'
+      'resume-exact/seg03.txt',
+      'resume-exact/seg04.txt',
+      'resume-exact/seg05.txt',
+      'resume-exact/seg06.txt',
+      'resume-exact/seg07.txt',
+      'resume-exact/seg08.txt',
+      'resume-exact/seg09.txt'
     ];
+
+    const expectedBase64Length = 121436;
+    const expectedHash = '190933d514d5e562a2ea4994a7f3d6a682a26cdd86c8ce0be1d923ed238a6444';
 
     (async () => {
       try {
-        const encoded = (await Promise.all(parts.map(path => fetch(path, { cache: 'no-store' }).then(r => {
-          if (!r.ok) throw new Error(`Failed to load ${path}`);
-          return r.text();
-        })))).join('').replace(/\s+/g, '');
+        const encoded = (await Promise.all(parts.map(path =>
+          fetch(path, { cache: 'no-store' }).then(response => {
+            if (!response.ok) throw new Error(`${path}: ${response.status}`);
+            return response.text();
+          })
+        ))).join('').replace(/\s+/g, '');
+
+        if (encoded.length !== expectedBase64Length) {
+          throw new Error(`Resume payload length mismatch: ${encoded.length}`);
+        }
 
         const binary = atob(encoded);
         const bytes = new Uint8Array(binary.length);
         for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
 
-        const blob = new Blob([bytes], { type: 'application/pdf' });
-        const url = URL.createObjectURL(blob);
+        const digest = await crypto.subtle.digest('SHA-256', bytes);
+        const hash = Array.from(new Uint8Array(digest))
+          .map(byte => byte.toString(16).padStart(2, '0'))
+          .join('');
+
+        if (hash !== expectedHash) {
+          throw new Error(`Resume hash mismatch: ${hash}`);
+        }
+
+        const blobUrl = URL.createObjectURL(new Blob([bytes], { type: 'application/pdf' }));
         const viewer = document.getElementById('viewer');
-        viewer.src = url;
+        viewer.src = blobUrl;
         viewer.style.display = 'block';
         document.getElementById('status').style.display = 'none';
-        document.getElementById('fallbackLink').href = url;
       } catch (error) {
         console.error(error);
         document.getElementById('status').style.display = 'none';
-        document.getElementById('fallback').style.display = 'block';
+        document.getElementById('error').style.display = 'block';
       }
     })();
   </script>
