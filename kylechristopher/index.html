@@ -11,13 +11,21 @@
   <meta name="theme-color" content="#08111f" />
   <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="nav-enhancements.css" />
 </head>
 <body>
   <header class="nav" id="nav">
     <div class="shell nav-inner">
       <a class="brand" href="#top" aria-label="Kyle Christopher home"><span class="monogram">KC</span><span>Kyle Christopher</span></a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="#approach">Approach</a><a href="#experience">Experience</a><a href="#about">About</a><a class="nav-cta" href="mailto:KyleDChristopher@gmail.com">Get in touch</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primaryNav" aria-label="Open navigation menu">
+        <span></span><span></span>
+      </button>
+      <nav class="nav-links utility-nav" id="primaryNav" aria-label="Primary navigation">
+        <a href="#experience">Experience</a>
+        <a href="https://www.linkedin.com/in/ky-c/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="view-resume.html?v=2" target="_blank" rel="noopener noreferrer">View Resume</a>
+        <a href="mailto:KyleDChristopher@gmail.com">Email Me</a>
+        <a class="nav-cta schedule-link" href="#contact" title="Calendly link coming soon">Schedule Time</a>
       </nav>
     </div>
   </header>
@@ -30,7 +38,7 @@
         <div class="hero-mantra">Understand. <span>Translate.</span> Activate.</div>
         <p class="hero-copy">I help enterprise customers and technology partners turn complex platforms into clear decisions, stronger adoption, and measurable value.</p>
         <div class="hero-actions">
-          <a class="button primary" href="view-resume.html" target="_blank" rel="noopener noreferrer">View Resume</a>
+          <a class="button primary" href="view-resume.html?v=2" target="_blank" rel="noopener noreferrer">View Resume</a>
           <a class="button ghost" href="https://www.linkedin.com/in/ky-c/" target="_blank" rel="noopener noreferrer">View experience</a>
         </div>
       </div></div>
@@ -79,12 +87,13 @@
     </div></section>
 
     <section class="contact" id="contact"><div class="shell"><div class="contact-inner reveal">
-      <p class="eyebrow">Contact</p><h2>Complex technology moves faster when the path is clear.</h2><p>Let’s talk about the customer, partner, or implementation challenge you need to move forward.</p><div class="contact-actions"><a class="button primary" href="mailto:KyleDChristopher@gmail.com">Get in touch</a><a class="button light" href="view-resume.html" target="_blank" rel="noopener noreferrer">View Resume</a></div><div class="email">KyleDChristopher@gmail.com</div>
+      <p class="eyebrow">Contact</p><h2>Complex technology moves faster when the path is clear.</h2><p>Let’s talk about the customer, partner, or implementation challenge you need to move forward.</p><div class="contact-actions"><a class="button primary" href="mailto:KyleDChristopher@gmail.com">Get in touch</a><a class="button light" href="view-resume.html?v=2" target="_blank" rel="noopener noreferrer">View Resume</a></div><div class="email">KyleDChristopher@gmail.com</div>
     </div></div></section>
   </main>
 
   <footer><div class="shell footer-inner"><span>KC · Kyle Christopher</span><span>Enterprise technology adoption</span><span>2026</span></div></footer>
 
   <script src="script.js"></script>
+  <script src="nav-menu.js"></script>
 </body>
 </html>
